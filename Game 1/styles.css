@@ -1,0 +1,113 @@
+/* 1. Hard reset to nuke all hidden browser margins/padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Lock the body size to exactly the window size and kill scrollbars */
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* This absolutely removes the scrollbar */
+    background-color: #000; 
+    font-family: "Courier New", Courier, monospace;
+    user-select: none;
+}
+
+/* 3. Force the 3D canvas to strictly fill the screen in the background */
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 1; /* Puts the game on layer 1 */
+}
+
+/* 4. Force the UI to float ON TOP of the canvas */
+#ui-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Lets you click through the UI to lock the mouse */
+    z-index: 10; /* Puts the UI on layer 10 (above the game) */
+}
+
+/* UI Element Positions */
+#top-right {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    text-align: right;
+    color: #ff007f; 
+    text-shadow: 2px 2px 0px #00ffff; 
+}
+
+.money {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.health-bar {
+    width: 150px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #ff007f;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.health-fill {
+    width: 100%; 
+    height: 100%;
+    background-color: #ff007f;
+    transition: width 0.2s ease-in-out;
+}
+
+.weapon {
+    clear: both;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#minimap {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 0, 127, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px #00ffff;
+}
+
+#player-blip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: #00ffff;
+    transform: translate(-50%, -50%);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+#controls-hint {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    text-align: right;
+    color: white;
+    font-size: 14px;
+    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #00ffff;
+}

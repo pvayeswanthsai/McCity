@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vice City Web Prototype</title>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body, html { 
+            width: 100vw; height: 100vh; 
+            overflow: hidden; 
+            background-color: #000; 
+            font-family: "Courier New", Courier, monospace; 
+            user-select: none; 
+        }
+        
+        canvas { 
+            display: block; position: absolute; 
+            top: 0; left: 0; z-index: 1; 
+        }
+        
+        #ui-container { 
+            position: absolute; top: 0; left: 0; 
+            width: 100vw; height: 100vh; 
+            pointer-events: none; z-index: 10; 
+        }
+        
+        /* Minimap moved to Top Right */
+        #minimap { 
+            position: absolute; top: 20px; right: 30px; 
+            width: 150px; height: 150px; border-radius: 50%; 
+            border: 4px solid rgba(255, 0, 127, 0.8); 
+            background-color: rgba(0, 0, 0, 0.6); 
+            box-shadow: 0 0 15px #00ffff; 
+        }
+        
+        #player-blip { 
+            position: absolute; top: 50%; left: 50%; 
+            width: 10px; height: 10px; background-color: #00ffff; 
+            transform: translate(-50%, -50%); 
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%); 
+        }
+
+        /* Stats shifted down to accommodate the minimap */
+        #stats { 
+            position: absolute; top: 190px; right: 30px; 
+            text-align: right; color: #ff007f; 
+            text-shadow: 2px 2px 0px #00ffff; 
+        }
+        
+        .money { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
+        .health-bar { width: 150px; height: 15px; background-color: rgba(0, 0, 0, 0.5); border: 2px solid #ff007f; float: right; margin-bottom: 10px; }
+        .health-fill { width: 100%; height: 100%; background-color: #ff007f; transition: width 0.2s ease-in-out; }
+        .weapon { clear: both; font-size: 24px; font-weight: bold; }
+
+        /* Instructions on Bottom Right */
+        #controls-hint { 
+            position: absolute; bottom: 30px; right: 30px; 
+            text-align: right; color: white; font-size: 14px; 
+            opacity: 0.8; background-color: rgba(0, 0, 0, 0.5); 
+            padding: 10px 15px; border-radius: 5px; border: 1px solid #00ffff; 
+        }
+    </style>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    
+    <div id="ui-container">
+        <div id="minimap">
+            <div id="player-blip"></div>
+        </div>
+        
+        <div id="stats">
+            <div class="money">$00000000</div>
+            <div class="health-bar"><div class="health-fill"></div></div>
+            <div class="weapon">FIST</div>
+        </div>
+        
+        <div id="controls-hint">
+            WASD: Move | SPACE: Jump<br>CLICK: Punch | F: Enter Car
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
